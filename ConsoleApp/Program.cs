@@ -13,7 +13,7 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            if(Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Count() <= 2 )
+            if(Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Count() <= 0 )
             {
                 Process.Start("ConsoleApp.exe");
             }
