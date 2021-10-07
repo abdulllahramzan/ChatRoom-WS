@@ -22,6 +22,7 @@ namespace WS_Chat.SocketManager
             if (!context.WebSockets.IsWebSocketRequest)
                 return;
             var socket = await context.WebSockets.AcceptWebSocketAsync();
+            await Handler.OnConnected(socket);
             await Receive(socket, async (result, buffer) =>
             {
                 if (result.MessageType == WebSocketMessageType.Text)
