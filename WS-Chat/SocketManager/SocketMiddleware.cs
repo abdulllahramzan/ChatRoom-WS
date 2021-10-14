@@ -9,13 +9,12 @@ namespace WS_Chat.SocketManager
     public class SocketMiddleware
     {
         private readonly RequestDelegate _next;
-
+        private SocketHandler Handler { get; set; }
         public SocketMiddleware(RequestDelegate next, SocketHandler handler)
         {
             _next = next;
             Handler = handler;
         }
-        private SocketHandler Handler { get; set; }
 
         public async Task InvokeAsync(HttpContext context)
         {
@@ -40,12 +39,12 @@ namespace WS_Chat.SocketManager
         private async Task Receive(WebSocket webSocket, Action<WebSocketReceiveResult, byte[]> messageHandler)
         {
             var buffer = new byte[1024 * 4];
-            while(webSocket.State == WebSocketState.Open)
+            while (webSocket.State == WebSocketState.Open)
             {
                 var result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
                 messageHandler(result, buffer);
             }
         }
     }
-    
+
 }

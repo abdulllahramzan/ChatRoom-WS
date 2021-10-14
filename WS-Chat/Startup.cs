@@ -28,7 +28,7 @@ namespace WS_Chat
 
             app.UseWebSockets();
             app.MapSockets("/ws", serviceProvider.GetService<WebSocketMessageHandler>());
-            app.UseStaticFiles();
+            app.UseStaticFiles();  
         }
     }
 }

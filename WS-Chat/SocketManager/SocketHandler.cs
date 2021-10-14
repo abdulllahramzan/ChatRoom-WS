@@ -31,12 +31,12 @@ namespace WS_Chat.SocketManager
                 return;
                 await socket.SendAsync(new System.ArraySegment<byte>(Encoding.ASCII.GetBytes(message), 0, message.Length),
                     WebSocketMessageType.Text, true, CancellationToken.None);
-            
         }
 
         public async Task SendMessageToAll(string id, string message)
         {
             await SendMessage(Connections.GetSocketbyId(id), message);
+
         }
 
         public async Task SendMessageToAll(string message)
